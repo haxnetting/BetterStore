@@ -1,0 +1,62 @@
+options:
+    1rank: VIP
+    2rank: SVIP
+    3rank: MVIP
+    4rank: EVIP
+    5rank: CUSTOM
+    prefix: &fYourServer
+
+function hexfix(f: text) :: text:
+    return formatted (join (regex split (join (regex split {_f} by "(?<=(&##([a-fA-f0-9]{6})))") by ">") by "&##(?=([a-fA-f0-9]{6}))") by "<##")
+
+command /setrank <offline player> <text>:
+    permission: setrank.highstaff
+    permission message: &cYou do not have permission to use this command!
+    trigger:
+        if arg-1 is set:
+            if arg-2 is "{@1rank}":
+                console command "lp user %arg-1% parent set {@1rank}"
+                wait 10 ticks
+                broadcast "&8========== {@prefix} &8=========="
+                broadcast " "
+                broadcast "&b%Plyaer% just bought the %hexfix(arg-1's prefix)% &brank! &aGG!"
+                broadcast " "
+                broadcast "&8========== {@prefix} &8=========="
+            else if arg-2 is "{@2rank}":
+                console command "lp user %arg-1% parent set {@2rank}"
+                wait 10 ticks
+                broadcast "&8========== {@prefix} &8=========="
+                broadcast " "
+                broadcast "&b%Plyaer% just bought the %hexfix(arg-2's prefix)% &brank! &aGG!"
+                broadcast " "
+                broadcast "&8========== {@prefix} &8=========="
+            else if arg-2 is "{@3rank}":
+                console command "lp user %arg-1% parent set {@3rank}"
+                wait 10 ticks
+                broadcast "&8========== {@prefix} &8=========="
+                broadcast " "
+                broadcast "&b%Plyaer% just bought the %hexfix(arg-3's prefix)% &brank! &aGG!"
+                broadcast " "
+                broadcast "&8========== {@prefix} &8=========="
+            else if arg-2 is "{@4rank}":
+                console command "lp user %arg-1% parent set {@4rank}"
+                wait 10 ticks
+                broadcast "&8========== {@prefix} &8=========="
+                broadcast " "
+                broadcast "&b%Plyaer% just bought the %hexfix(arg-4's prefix)% &brank! &aGG!"
+                broadcast " "
+                broadcast "&8========== {@prefix} &8=========="
+            else if arg-2 is "{@5rank}":
+                console command "lp user %arg-1% parent set {@5rank}"
+                wait 10 ticks
+                broadcast "&8========== {@prefix} &8=========="
+                broadcast " "
+                broadcast "&b%Plyaer% just bought the %hexfix(arg-5's prefix)% &brank! &aGG!"
+                broadcast " "
+                broadcast "&8========== {@prefix} &8=========="
+            else:
+                send "&cThat rank does not exist!"
+                stop
+        else:
+            send "&cPlease specify a player to give a rank to!"
+            stop
